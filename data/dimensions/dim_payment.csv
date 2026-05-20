@@ -1,0 +1,4 @@
+payment_id,payment_method
+PAY01,e-wallet
+PAY02,cash
+PAY03,kartu

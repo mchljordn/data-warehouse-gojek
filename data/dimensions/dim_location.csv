@@ -1,0 +1,101 @@
+location_id,city,province,region
+LOC001,Sorong,Sulawesi Tenggara,Jawa Tengah
+LOC002,Tasikmalaya,Nusa Tenggara Timur,Jawa Barat
+LOC003,Bekasi,Papua Barat,Jawa Barat
+LOC004,Banjarmasin,Kalimantan Barat,Jawa Tengah
+LOC005,Banjarbaru,Kalimantan Barat,Jabodetabek
+LOC006,Binjai,Sulawesi Selatan,Jawa Tengah
+LOC007,Bengkulu,Sulawesi Selatan,Jabodetabek
+LOC008,Bandung,Kepulauan Riau,Bali
+LOC009,Pangkalpinang,Kalimantan Tengah,Bali
+LOC010,Denpasar,Sumatera Utara,Bali
+LOC011,Padangpanjang,Sumatera Utara,Jabodetabek
+LOC012,Tanjungpinang,Sulawesi Barat,Bali
+LOC013,Kotamobagu,Sumatera Selatan,Jawa Barat
+LOC014,Yogyakarta,Papua,Jawa Tengah
+LOC015,Tual,Kalimantan Timur,Jabodetabek
+LOC016,Mataram,Riau,Jawa Barat
+LOC017,Tasikmalaya,Gorontalo,Jabodetabek
+LOC018,Salatiga,Sulawesi Tenggara,Bali
+LOC019,Padang Sidempuan,Sumatera Barat,Jawa Barat
+LOC020,Surakarta,DI Yogyakarta,Jawa Timur
+LOC021,Sukabumi,Sulawesi Selatan,Jabodetabek
+LOC022,Samarinda,Lampung,Jawa Timur
+LOC023,Semarang,DI Yogyakarta,Bali
+LOC024,Madiun,Jawa Timur,Jawa Tengah
+LOC025,Kota Administrasi Jakarta Selatan,Jambi,Jawa Timur
+LOC026,Bandung,Maluku,Jabodetabek
+LOC027,Sabang,Aceh,Bali
+LOC028,Pontianak,Kalimantan Barat,Jawa Timur
+LOC029,Langsa,Lampung,Jawa Timur
+LOC030,Madiun,Papua Barat,Bali
+LOC031,Kota Administrasi Jakarta Barat,Sumatera Utara,Jawa Tengah
+LOC032,Salatiga,Banten,Jabodetabek
+LOC033,Kotamobagu,Kalimantan Tengah,Jawa Barat
+LOC034,Palangkaraya,Aceh,Jawa Tengah
+LOC035,Bekasi,Jawa Tengah,Jabodetabek
+LOC036,Tasikmalaya,Gorontalo,Jabodetabek
+LOC037,Surakarta,Jawa Timur,Jawa Tengah
+LOC038,Balikpapan,Kepulauan Riau,Jabodetabek
+LOC039,Payakumbuh,Nusa Tenggara Barat,Jawa Timur
+LOC040,Surakarta,Sulawesi Barat,Jawa Timur
+LOC041,Sawahlunto,Sumatera Utara,Jawa Timur
+LOC042,Mojokerto,Jawa Timur,Jawa Barat
+LOC043,Jambi,Nusa Tenggara Timur,Jabodetabek
+LOC044,Tual,Kalimantan Selatan,Jawa Timur
+LOC045,Kupang,Sulawesi Tenggara,Bali
+LOC046,Kediri,Jambi,Jawa Timur
+LOC047,Bima,Sulawesi Selatan,Bali
+LOC048,Lubuklinggau,Kepulauan Bangka Belitung,Jawa Barat
+LOC049,Pekanbaru,Kepulauan Bangka Belitung,Jawa Timur
+LOC050,Cirebon,Sulawesi Tengah,Jawa Barat
+LOC051,Tangerang Selatan,Sumatera Utara,Jabodetabek
+LOC052,Tual,Kalimantan Timur,Bali
+LOC053,Bau-Bau,Kalimantan Utara,Jawa Timur
+LOC054,Kendari,Bali,Jabodetabek
+LOC055,Tomohon,Papua,Jawa Timur
+LOC056,Denpasar,Kepulauan Riau,Bali
+LOC057,Padang,Jawa Tengah,Jawa Timur
+LOC058,Dumai,Sumatera Barat,Jawa Barat
+LOC059,Madiun,Sulawesi Utara,Jawa Timur
+LOC060,Bogor,Sulawesi Barat,Jabodetabek
+LOC061,Semarang,Lampung,Jawa Timur
+LOC062,Bandung,Nusa Tenggara Barat,Jabodetabek
+LOC063,Padang Sidempuan,Kalimantan Utara,Jawa Timur
+LOC064,Payakumbuh,Kalimantan Timur,Jawa Timur
+LOC065,Sawahlunto,Sumatera Utara,Jawa Tengah
+LOC066,Pasuruan,Sulawesi Barat,Jabodetabek
+LOC067,Pontianak,Bengkulu,Jawa Barat
+LOC068,Medan,Kalimantan Utara,Jawa Barat
+LOC069,Batu,DKI Jakarta,Jawa Barat
+LOC070,Kupang,Sumatera Utara,Bali
+LOC071,Probolinggo,Jawa Barat,Jawa Timur
+LOC072,Pagaralam,Gorontalo,Jawa Timur
+LOC073,Tual,Maluku Utara,Jawa Tengah
+LOC074,Bontang,Maluku Utara,Bali
+LOC075,Makassar,Bengkulu,Jabodetabek
+LOC076,Makassar,Kalimantan Barat,Jawa Timur
+LOC077,Palangkaraya,Kalimantan Barat,Bali
+LOC078,Tanjungbalai,Bengkulu,Jawa Barat
+LOC079,Jambi,Maluku Utara,Jabodetabek
+LOC080,Langsa,Sulawesi Barat,Jawa Barat
+LOC081,Purwokerto,Bengkulu,Jabodetabek
+LOC082,Tanjungpinang,Kalimantan Tengah,Jabodetabek
+LOC083,Sorong,Aceh,Jawa Timur
+LOC084,Banjarbaru,Aceh,Jabodetabek
+LOC085,Palangkaraya,Banten,Jawa Tengah
+LOC086,Batu,Sumatera Barat,Jawa Tengah
+LOC087,Bengkulu,Maluku Utara,Jawa Timur
+LOC088,Ambon,Nusa Tenggara Timur,Jawa Tengah
+LOC089,Kediri,Lampung,Jawa Barat
+LOC090,Bontang,Kalimantan Selatan,Jawa Timur
+LOC091,Palopo,Papua,Jawa Barat
+LOC092,Ternate,Jawa Timur,Jawa Timur
+LOC093,Purwokerto,Nusa Tenggara Barat,Jawa Barat
+LOC094,Depok,DKI Jakarta,Jawa Tengah
+LOC095,Lubuklinggau,Jawa Timur,Bali
+LOC096,Kota Administrasi Jakarta Utara,Papua,Bali
+LOC097,Bau-Bau,Sumatera Utara,Jawa Barat
+LOC098,Magelang,Kalimantan Tengah,Jabodetabek
+LOC099,Depok,Kalimantan Utara,Jawa Tengah
+LOC100,Palu,Banten,Jawa Timur
