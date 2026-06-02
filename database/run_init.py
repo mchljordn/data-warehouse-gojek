@@ -9,7 +9,7 @@ PG_USER = os.getenv('PGUSER', 'postgres')
 PG_PASS = os.getenv('PGPASSWORD')  # try env first
 PG_HOST = os.getenv('PGHOST', 'localhost')
 PG_PORT = int(os.getenv('PGPORT', 5432))
-INIT_SQL = r'C:\coding\sem 6\datwer\database\init.sql'
+INIT_SQL = os.path.join(os.path.dirname(__file__), 'init.sql')
 DB_NAME = 'dwh_gojek'
 
 if not PG_PASS:
