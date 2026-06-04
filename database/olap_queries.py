@@ -1,5 +1,5 @@
 """
-OLAP Query Library for Gojek DWH Dashboard.
+OLAP Query Library for GoGrab DWH Dashboard.
 All queries target the dwh schema in PostgreSQL.
 """
 

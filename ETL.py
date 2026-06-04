@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 import os
 import getpass
 import sys
+import json
 
 # --- SETUP KONEKSI ---
 # Ambil password dari env PGPASSWORD atau prompt
@@ -26,9 +27,13 @@ if not PG_PASS:
 conn_str = f'postgresql://{PG_USER}:{PG_PASS}@{PG_HOST}:{PG_PORT}/{DB_NAME}'
 engine = create_engine(conn_str)
 fake = Faker('id_ID')
+
+random.seed(42)
+fake.seed_instance(42)
+
 DW_SCHEMA = 'dwh'
 
-print("🚀 Memulai proses ETL (Versi CSV & Database)...")
+print("Memulai proses ETL (Versi CSV & Database)...")
 
 # --- 1. GENERATE DATA DIMENSI ---
 # dim_customer (10,000 baris) - format dengan 5 digit untuk 00001-10000
@@ -39,8 +44,26 @@ df_customer = pd.DataFrame(customers)
 drivers = [{'driver_id': f'DRV{i:05}', 'vehicle_type': random.choice(['motor', 'mobil']), 'driver_rating': round(random.uniform(3.5, 5.0), 2), 'driver_status': random.choice(['aktif', 'nonaktif'])} for i in range(1, 10001)]
 df_driver = pd.DataFrame(drivers)
 
+# Load Indonesian city master mapping
+try:
+    with open('data/city_master.json', 'r', encoding='utf-8') as f:
+        city_master_map = json.load(f)
+except FileNotFoundError:
+    with open('city_master.json', 'r', encoding='utf-8') as f:
+        city_master_map = json.load(f)
+
+city_master_keys = list(city_master_map.keys())
+
 # dim_location (100 baris) - format dengan 3 digit untuk 001-100
-locations = [{'location_id': f'LOC{i:03}', 'city': fake.city(), 'province': fake.state(), 'region': random.choice(['Jabodetabek', 'Jawa Barat', 'Jawa Tengah', 'Jawa Timur', 'Bali'])} for i in range(1, 101)]
+locations = []
+for i in range(1, 101):
+    city = random.choice(city_master_keys)
+    locations.append({
+        'location_id': f'LOC{i:03}',
+        'city': city,
+        'province': city_master_map[city]['province'],
+        'region': city_master_map[city]['region']
+    })
 df_location = pd.DataFrame(locations)
 
 # dim_time (per jam dari 1 Jan 2023 s.d. 31 Des 2024)
@@ -77,18 +100,20 @@ for i in range(1, 100001):
 df_fact = pd.DataFrame(orders)
 
 # --- 3. PROSES SIMPAN KE CSV ---
-print("📂 Menyimpan data mentah ke file CSV...")
-df_customer.to_csv('dim_customer.csv', index=False)
-df_driver.to_csv('dim_driver.csv', index=False)
-df_location.to_csv('dim_location.csv', index=False)
-df_time.to_csv('dim_time.csv', index=False)
-df_service.to_csv('dim_service.csv', index=False)
-df_payment.to_csv('dim_payment.csv', index=False)
-df_fact.to_csv('fact_order.csv', index=False)
+print("Menyimpan data mentah ke file CSV...")
+output_dir = 'data/dimensions'
+os.makedirs(output_dir, exist_ok=True)
+df_customer.to_csv(os.path.join(output_dir, 'dim_customer.csv'), index=False)
+df_driver.to_csv(os.path.join(output_dir, 'dim_driver.csv'), index=False)
+df_location.to_csv(os.path.join(output_dir, 'dim_location.csv'), index=False)
+df_time.to_csv(os.path.join(output_dir, 'dim_time.csv'), index=False)
+df_service.to_csv(os.path.join(output_dir, 'dim_service.csv'), index=False)
+df_payment.to_csv(os.path.join(output_dir, 'dim_payment.csv'), index=False)
+df_fact.to_csv(os.path.join(output_dir, 'fact_order.csv'), index=False)
 
 # --- 4. PROSES LOAD KE POSTGRESQL ---
 try:
-    print("📥 Loading data ke PostgreSQL...")
+    print("Loading data ke PostgreSQL...")
     df_customer.to_sql('dim_customer', engine, schema=DW_SCHEMA, if_exists='append', index=False)
     df_driver.to_sql('dim_driver', engine, schema=DW_SCHEMA, if_exists='append', index=False)
     df_location.to_sql('dim_location', engine, schema=DW_SCHEMA, if_exists='append', index=False)    
@@ -96,7 +121,7 @@ try:
     df_service.to_sql('dim_service', engine, schema=DW_SCHEMA, if_exists='append', index=False)
     df_payment.to_sql('dim_payment', engine, schema=DW_SCHEMA, if_exists='append', index=False)
     df_fact.to_sql('fact_order', engine, schema=DW_SCHEMA, if_exists='append', index=False)
-    print("✅ SELESAI! CSV sudah dibuat & Database sudah terisi.")
+    print("SELESAI! CSV sudah dibuat & Database sudah terisi.")
 except Exception as e:
-    print(f"❌ Error: {e}")
+    print(f"Error: {e}")
     sys.exit(1)

@@ -1,5 +1,5 @@
 """
-Database connection utilities for Gojek DWH Dashboard.
+Database connection utilities for GoGrab DWH Dashboard.
 Uses SQLAlchemy + psycopg2 with Streamlit caching for performance.
 """
 import os
@@ -14,15 +14,14 @@ from sqlalchemy.pool import QueuePool
 def get_connection_string() -> str:
     """Bypass absolut: Membaca secrets.toml lokal secara paksa tanpa st.secrets"""
     try:
-        # Tentukan jalur mutlak ke file secrets lokal di folder proyek
         local_secrets_path = os.path.join(os.getcwd(), ".streamlit", "secrets.toml")
         
         if os.path.exists(local_secrets_path):
-            # Baca file TOML secara manual sebagai dictionary Python
+            # Baca file TOML 
             config = toml.load(local_secrets_path)
             cfg = config["postgres"]
         else:
-            # Fallback pakai st.secrets bawaan kalau file lokal tidak ketemu
+            # Fallback menggunakan st.secrets
             cfg = st.secrets["postgres"]
             
         # Gunakan IP 127.0.0.1 agar aman dari bentrok IPv6 localhost (::1)
@@ -81,3 +80,26 @@ def test_connection() -> bool:
         return bool(df["ok"].iloc[0] == 1)
     except Exception as e:
         return str(e)
+
+
+def format_rupiah(value) -> str:
+    """Format a numeric value to Indonesian Rupiah currency style: Rp 150.000"""
+    if value is None or pd.isnull(value):
+        return "-"
+    try:
+        val_float = float(value)
+        formatted = f"{val_float:,.0f}"
+        return f"Rp {formatted.replace(',', '.')}"
+    except (ValueError, TypeError):
+        return str(value)
+
+
+def format_number(value) -> str:
+    """Format a numeric value with dot as thousands separator: 100.000"""
+    if value is None or pd.isnull(value):
+        return "-"
+    try:
+        val_int = int(float(value))
+        return f"{val_int:,}".replace(",", ".")
+    except (ValueError, TypeError):
+        return str(value)

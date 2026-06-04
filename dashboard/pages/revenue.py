@@ -4,7 +4,7 @@ Displays revenue breakdowns, monthly trends, top cities, and payment methods.
 """
 import streamlit as st
 import pandas as pd
-from dashboard.utils.db import run_query
+from dashboard.utils.db import run_query, format_rupiah, format_number
 from database.olap_queries import (
     q_revenue_by_service, q_revenue_monthly_trend,
     q_top_cities_revenue, q_payment_method_breakdown,
@@ -49,12 +49,12 @@ def render(filters: dict):
             x="total_revenue", y="service_name",
             title="Total Revenue by Service Type",
         )
-        st.plotly_chart(fig, use_container_width=True, theme=None)
+        st.plotly_chart(fig, width="stretch", theme=None)
 
     with col2:
         fig = donut(df_payment, names="payment_method", values="total_revenue",
                     title="Revenue Proportion by Payment Method")
-        st.plotly_chart(fig, use_container_width=True, theme=None)
+        st.plotly_chart(fig, width="stretch", theme=None)
 
     # Monthly Trends
     section_header("Monthly Revenue Trend")
@@ -63,7 +63,7 @@ def render(filters: dict):
         secondary_y="mom_growth_pct",
         title="Monthly Revenue (IDR) & MoM Growth Rate (%)",
     )
-    st.plotly_chart(fig, use_container_width=True, theme=None)
+    st.plotly_chart(fig, width="stretch", theme=None)
 
     # City Performance
     section_header("Top Cities by Revenue Performance")
@@ -72,7 +72,7 @@ def render(filters: dict):
         x="total_revenue", y="city",
         title="Top 15 Performing Cities",
     )
-    st.plotly_chart(fig, use_container_width=True, theme=None)
+    st.plotly_chart(fig, width="stretch", theme=None)
 
     # Regional Revenue Distribution
     section_header("Regional Revenue Distribution")
@@ -82,7 +82,7 @@ def render(filters: dict):
         
         # Format total revenue as IDR currency
         display_df["total_revenue"] = display_df["total_revenue"].apply(
-            lambda x: f"Rp {x:,.0f}" if pd.notnull(x) else "-"
+            format_rupiah
         )
         st.markdown(display_df.to_html(classes="custom-table", index=False, escape=False), unsafe_allow_html=True)
 
@@ -91,13 +91,13 @@ def render(filters: dict):
     col1, col2, col3 = st.columns(3)
     col1.metric("Highest Revenue Service",
                 df_service.loc[df_service["total_revenue"].idxmax(), "service_name"],
-                f"Rp {df_service['total_revenue'].max():,.0f}")
+                format_rupiah(df_service['total_revenue'].max()))
     col2.metric("Highest Average Order Value (AOV)",
                 df_service.loc[df_service["avg_price"].idxmax(), "service_name"],
-                f"Rp {df_service['avg_price'].max():,.0f}")
+                format_rupiah(df_service['avg_price'].max()))
     col3.metric("Highest Order Volume",
                 df_service.loc[df_service["total_orders"].idxmax(), "service_name"],
-                f"{df_service['total_orders'].max():,}")
+                format_number(df_service['total_orders'].max()))
 
     # Automated Insights Generation
     top_service = df_service.iloc[0]
@@ -106,9 +106,9 @@ def render(filters: dict):
 
     insight_box("Revenue & Performance Insights", [
         f"The <b>{top_service['service_name'].title()}</b> sector dominates the total revenue, contributing "
-        f"<b>IDR {top_service['total_revenue']:,.0f}</b> ({top_service['revenue_share_pct']}% market share).",
-        f"<b>{top_city['city']}</b> is the highest revenue-contributing city, generating <b>IDR {top_city['total_revenue']:,.0f}</b> "
-        f"across {top_city['total_orders']:,} total orders.",
+        f"<b>{format_rupiah(top_service['total_revenue'])}</b> ({top_service['revenue_share_pct']}% market share).",
+        f"<b>{top_city['city']}</b> is the highest revenue-contributing city, generating <b>{format_rupiah(top_city['total_revenue'])}</b> "
+        f"across {format_number(top_city['total_orders'])} total orders.",
         f"The <b>{top_payment['payment_method'].title()}</b> payment method is the primary customer preference, holding a "
         f"share of {top_payment['order_share_pct']}% of the total transaction volume.",
         f"The monthly trend shows fluctuating Month-over-Month (MoM) growth rates. "

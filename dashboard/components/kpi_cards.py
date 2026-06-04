@@ -1,5 +1,5 @@
 """
-KPI card renderer for the Gojek DWH Dashboard.
+KPI card renderer for the GoGrab DWH Dashboard.
 Injects CSS once, then renders metric cards via st.markdown.
 """
 import streamlit as st
@@ -189,8 +189,8 @@ def inject_styles(theme: str = "Dark Mode"):
     }}
     .kpi-card:hover {{ background: var(--bg-card-hover); transform: translateY(-2px); }}
     .kpi-icon  {{ font-size: 22px; margin-bottom: 10px; line-height: 1; }}
-    .kpi-label {{ font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; margin-bottom: 6px; }}
-    .kpi-value {{ font-size: 26px; font-weight: 700; color: var(--text-primary); font-family: 'DM Mono', monospace; line-height: 1.1; }}
+    .kpi-label {{ font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; margin-bottom: 6px; }}
+    .kpi-value {{ font-size: 19px; font-weight: 700; color: var(--text-primary); font-family: 'DM Mono', monospace; line-height: 1.1; }}
     .kpi-sub   {{ font-size: 11px; color: var(--text-dim); margin-top: 5px; }}
     .kpi-delta-pos {{ color: var(--green); font-size: 11px; font-weight: 600; margin-top: 4px; }}
     .kpi-delta-neg {{ color: var(--red);   font-size: 11px; font-weight: 600; margin-top: 4px; }}

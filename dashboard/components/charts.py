@@ -9,14 +9,14 @@ import numpy as np
 import streamlit as st
 
 # Design Colors
-GOJEK_GREEN   = "#00AA5B"
-GOJEK_RED     = "#E82C2C"
+GOGRAB_GREEN   = "#00AA5B"
+GOGRAB_RED     = "#E82C2C"
 ACCENT_CYAN   = "#00D4FF"
 ACCENT_ORANGE = "#FF6B35"
 ACCENT_PURPLE = "#A855F7"
 ACCENT_YELLOW = "#FBBF24"
 
-PALETTE = [GOJEK_GREEN, ACCENT_CYAN, ACCENT_ORANGE, ACCENT_PURPLE, ACCENT_YELLOW, GOJEK_RED]
+PALETTE = [GOGRAB_GREEN, ACCENT_CYAN, ACCENT_ORANGE, ACCENT_PURPLE, ACCENT_YELLOW, GOGRAB_RED]
 
 
 def _get_theme_tokens():
@@ -82,7 +82,7 @@ def _apply_base(fig: go.Figure, title: str = "") -> go.Figure:
 # --- Bar Charts ---
 
 def bar_horizontal(df: pd.DataFrame, x: str, y: str, title: str = "",
-                   color: str = GOJEK_GREEN, text_col: str | None = None) -> go.Figure:
+                   color: str = GOGRAB_GREEN, text_col: str | None = None) -> go.Figure:
     """Render horizontal bar chart sorted descendingly."""
     fig = px.bar(df, x=x, y=y, orientation="h",
                  text=text_col or x,
@@ -153,7 +153,7 @@ def line_trend(df: pd.DataFrame, x: str, y: str | list, title: str = "",
         
         fig.add_trace(
             go.Scatter(x=df[x], y=df[y], name=str(y).title(),
-                       line=dict(color=GOJEK_GREEN, width=2.5),
+                       line=dict(color=GOGRAB_GREEN, width=2.5),
                        fill="tozeroy", fillcolor="rgba(0,170,91,0.08)"),
             secondary_y=False,
         )
@@ -331,7 +331,7 @@ def scatter_driver(df: pd.DataFrame, title: str = "Driver Rating vs Revenue") ->
 def gauge_kpi(value: float, title: str, max_val: float = 100,
               threshold: float = 15.0, unit: str = "%") -> go.Figure:
     """Render visual KPI gauge indicator."""
-    color = GOJEK_RED if value > threshold else GOJEK_GREEN
+    color = GOGRAB_RED if value > threshold else GOGRAB_GREEN
     tokens = _get_theme_tokens()
     
     fig = go.Figure(go.Indicator(
@@ -375,11 +375,11 @@ def waterfall_discount(df: pd.DataFrame) -> go.Figure:
     fig = go.Figure()
     fig.add_trace(go.Bar(
         name="Revenue", x=df["service_name"], y=df["total_revenue"],
-        marker_color=GOJEK_GREEN, opacity=0.85,
+        marker_color=GOGRAB_GREEN, opacity=0.85,
     ))
     fig.add_trace(go.Bar(
         name="Discount", x=df["service_name"], y=df["total_discount_given"],
-        marker_color=GOJEK_RED, opacity=0.85,
+        marker_color=GOGRAB_RED, opacity=0.85,
     ))
     _apply_base(fig, "Revenue vs Discount by Service")
     fig.update_layout(barmode="group")

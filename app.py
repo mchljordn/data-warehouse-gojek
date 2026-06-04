@@ -1,5 +1,5 @@
 """
-Gojek DWH Analytics Dashboard - Main Entry Point.
+GoGrab DWH Analytics Dashboard - Main Entry Point.
 Run command: streamlit run app.py
 """
 import streamlit as st
@@ -8,14 +8,14 @@ import numpy as np
 
 # Page configuration
 st.set_page_config(
-    page_title="Gojek Data Warehouse Analytics",
+    page_title="GoGrab Data Warehouse Analytics",
     page_icon="🛵",
     layout="wide",
     initial_sidebar_state="expanded",
 )
 
 # Imports
-from dashboard.utils.db import run_query, test_connection
+from dashboard.utils.db import run_query, test_connection, format_rupiah, format_number
 from database.olap_queries import (
     q_kpi_summary, q_filter_years,
     q_filter_regions, q_filter_services,
@@ -35,7 +35,7 @@ with st.sidebar:
     <div style="padding:16px 0 24px; text-align:center; font-family: sans-serif;">
         <div style="font-size:32px; margin-bottom:4px;">🛵</div>
         <div style="font-size:17px; font-weight:700; color: var(--text-primary); letter-spacing:-0.01em;">
-            Gojek Data Warehouse
+            GoGrab Data Warehouse
         </div>
         <div style="font-size:11px; color: var(--text-muted); text-transform:uppercase; letter-spacing:0.08em;">
             Analytics Dashboard
@@ -101,7 +101,7 @@ with st.sidebar:
     )
 
     st.markdown("---")
-    st.caption("Universitas Padjadjaran · Gojek Data Warehouse · 2026")
+    st.caption("Universitas Padjadjaran · GoGrab Data Warehouse · 2026")
 
 # Global styles injection based on theme selector
 inject_styles(theme)
@@ -117,7 +117,7 @@ filters = {
 st.markdown("""
 <div style="padding:24px 0 8px;">
     <h1 style="font-size:28px; font-weight:800; color: var(--text-primary); margin:0; letter-spacing:-0.02em;">
-        Gojek Service Analytics Dashboard
+        GoGrab Service Analytics Dashboard
     </h1>
     <p style="color: var(--text-muted); font-size:13px; margin:6px 0 0;">
         Data Warehouse · Star Schema · OLAP Analytics · 100K Orders · 2023–2024
@@ -146,21 +146,21 @@ try:
         {
             "icon": "💰",
             "label": "Total Revenue",
-            "value": f"Rp {total_revenue:,.0f}",
-            "sub": f"{total_orders:,} total orders",
+            "value": format_rupiah(total_revenue),
+            "sub": f"{format_number(total_orders)} total orders",
             "accent": "var(--green)",
         },
         {
             "icon": "📦",
             "label": "Average Order Value (AOV)",
-            "value": f"Rp {avg_order_value:,.0f}",
+            "value": format_rupiah(avg_order_value),
             "sub": f"Avg distance: {avg_distance:.1f} km",
             "accent": "var(--cyan)",
         },
         {
             "icon": "🎟️",
             "label": "Total Discount",
-            "value": f"Rp {total_discount:,.0f}",
+            "value": format_rupiah(total_discount),
             "sub": "Discount across active segments",
             "accent": "var(--orange)",
         },
@@ -175,14 +175,14 @@ try:
         {
             "icon": "👥",
             "label": "Unique Customers",
-            "value": f"{unique_customers:,}",
+            "value": format_number(unique_customers),
             "sub": "Distinct active users",
             "accent": "var(--purple)",
         },
         {
             "icon": "🛵",
             "label": "Active Drivers",
-            "value": f"{active_drivers:,}",
+            "value": format_number(active_drivers),
             "sub": "Fitted partner fleet",
             "accent": "var(--yellow)",
         },

@@ -61,14 +61,14 @@ def render(filters: dict):
             df_leaf, x="age_group", y="total_revenue",
             color="gender", title="Revenue Breakdown by Age Group & Gender",
         )
-        st.plotly_chart(fig, use_container_width=True, theme=None)
+        st.plotly_chart(fig, width="stretch", theme=None)
 
     with col2:
         fig = bar_grouped(
             df_leaf, x="age_group", y="total_orders",
             color="gender", title="Order Volume by Age Group & Gender",
         )
-        st.plotly_chart(fig, use_container_width=True, theme=None)
+        st.plotly_chart(fig, width="stretch", theme=None)
 
     with st.expander("📊 View Multi-dimensional Demographics Table", expanded=False):
         st.markdown(df_customer.to_html(classes="custom-table", index=False, escape=False), unsafe_allow_html=True)
@@ -84,7 +84,7 @@ def render(filters: dict):
             title="Order Completion Rate (%) by Discount Tier & Service",
         )
         fig.update_layout(yaxis=dict(range=[0, 105]))
-        st.plotly_chart(fig, use_container_width=True, theme=None)
+        st.plotly_chart(fig, width="stretch", theme=None)
 
     with col2:
         fig = waterfall_discount(
@@ -93,7 +93,7 @@ def render(filters: dict):
                 total_discount_given=("total_discount_given", "sum"),
             )
         )
-        st.plotly_chart(fig, use_container_width=True, theme=None)
+        st.plotly_chart(fig, width="stretch", theme=None)
 
     # Discount Burn by Age Group
     section_header("Discount Cost Distribution by Age Group")
@@ -103,7 +103,7 @@ def render(filters: dict):
         color="discount_tier",
         title="Total Discount Burned by Age Group & Tier",
     )
-    st.plotly_chart(fig, use_container_width=True, theme=None)
+    st.plotly_chart(fig, width="stretch", theme=None)
 
     # Cancellation Analysis
     section_header("Cancellation Analysis")
@@ -116,7 +116,7 @@ def render(filters: dict):
             title="Cancellation Rate (%) by Service Type",
             color="#E82C2C",
         )
-        st.plotly_chart(fig, use_container_width=True, theme=None)
+        st.plotly_chart(fig, width="stretch", theme=None)
 
     with col2:
         fig = bar_horizontal(
@@ -124,7 +124,7 @@ def render(filters: dict):
             title="Top 15 Provinces with Highest Cancellation Rate",
             color="#E82C2C",
         )
-        st.plotly_chart(fig, use_container_width=True, theme=None)
+        st.plotly_chart(fig, width="stretch", theme=None)
 
     # Automated Insights Generation
     best_age  = df_leaf.groupby("age_group")["total_revenue"].sum().idxmax()
@@ -138,6 +138,6 @@ def render(filters: dict):
         f"successfully drove the highest completion rate at <b>{best_disc['completion_rate_pct']}%</b>.",
         f"The <b>{worst_svc['service_name'].title()}</b> service recorded the highest cancellation rate at "
         f"<b>{worst_svc['cancellation_rate_pct']}%</b>. Fleet managers should investigate driver supply constraints in active areas.",
-        f"Subsidy distribution displays diminishing returns when discounts exceed IDR 5,000 across sectors. "
+        f"Subsidy distribution displays diminishing returns when discounts exceed Rp 5.000,00 across sectors. "
         f"Concentrating high-value promotions on the productive 26-35 age group will optimize marketing ROI.",
     ])

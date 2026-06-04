@@ -1,5 +1,5 @@
 -- =============================================================================
--- Gojek DWH — Materialized Views for Dashboard Query Optimization
+-- GoGrab DWH — Materialized Views for Dashboard Query Optimization
 -- Run once after ETL completes. Refresh daily/hourly as needed.
 -- =============================================================================
 

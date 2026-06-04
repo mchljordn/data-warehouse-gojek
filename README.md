@@ -1,6 +1,6 @@
-# 🛵 Gojek Data Warehouse Analytics Dashboard
+# 🛵 GoGrab Data Warehouse Analytics Dashboard
 
-> Streamlit dashboard for the **Perancangan Data Warehouse untuk Analisis Layanan Gojek** project  
+> Streamlit dashboard for the **Perancangan Data Warehouse untuk Analisis Layanan GoGrab** project  
 > Universitas Padjadjaran — Michael Jordan, Wa Ode Zachra, Shofy Aliya
 
 ---
@@ -8,7 +8,7 @@
 ## 📁 Project Structure
 
 ```
-gojek_dwh/
+gograb_dwh/
 ├── app.py                          # Main entry point
 ├── requirements.txt
 ├── .streamlit/
@@ -56,7 +56,7 @@ export PGUSER=postgres
 export PGPASSWORD=your_password
 export PGHOST=localhost
 export PGPORT=5432
-export PGDATABASE=dwh_gojek
+export PGDATABASE=___DWH_GOGRAB_PLACEHOLDER___
 ```
 
 ### 3. Run the ETL (if not done already)
@@ -67,7 +67,7 @@ python ETL.py
 
 ### 4. Create materialized views (optional but recommended)
 ```bash
-psql -U postgres -d dwh_gojek -f queries/materialized_views.sql
+psql -U postgres -d ___DWH_GOGRAB_PLACEHOLDER___ -f queries/materialized_views.sql
 ```
 
 ### 5. Launch dashboard

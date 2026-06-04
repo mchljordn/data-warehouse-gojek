@@ -1,101 +1,101 @@
 location_id,city,province,region
-LOC001,Sorong,Papua Barat,Luar Jawa
-LOC002,Tasikmalaya,Jawa Barat,Jawa Barat
-LOC003,Bekasi,Jawa Barat,Jabodetabek
-LOC004,Banjarmasin,Kalimantan Selatan,Luar Jawa
-LOC005,Banjarbaru,Kalimantan Selatan,Luar Jawa
-LOC006,Binjai,Sumatera Utara,Luar Jawa
-LOC007,Bengkulu,Bengkulu,Luar Jawa
-LOC008,Bandung,Jawa Barat,Jawa Barat
-LOC009,Pangkalpinang,Kepulauan Bangka Belitung,Luar Jawa
-LOC010,Denpasar,Bali,Jawa Timur & Bali Nusra
-LOC011,Padangpanjang,Sumatera Barat,Luar Jawa
-LOC012,Tanjungpinang,Kepulauan Riau,Luar Jawa
-LOC013,Kotamobagu,Sulawesi Utara,Luar Jawa
-LOC014,Yogyakarta,DI Yogyakarta,Jawa Tengah & DIY
-LOC015,Tual,Maluku,Luar Jawa
-LOC016,Mataram,Nusa Tenggara Barat,Jawa Timur & Bali Nusra
-LOC017,Tasikmalaya,Jawa Barat,Jawa Barat
-LOC018,Salatiga,Jawa Tengah,Jawa Tengah & DIY
-LOC019,Padang Sidempuan,Sumatera Utara,Luar Jawa
-LOC020,Surakarta,Jawa Tengah,Jawa Tengah & DIY
-LOC021,Sukabumi,Jawa Barat,Jawa Barat
-LOC022,Samarinda,Kalimantan Timur,Luar Jawa
-LOC023,Semarang,Jawa Tengah,Jawa Tengah & DIY
-LOC024,Madiun,Jawa Timur,Jawa Timur & Bali Nusra
-LOC025,Kota Administrasi Jakarta Selatan,DKI Jakarta,Jabodetabek
-LOC026,Bandung,Jawa Barat,Jawa Barat
-LOC027,Sabang,Aceh,Luar Jawa
-LOC028,Pontianak,Kalimantan Barat,Luar Jawa
-LOC029,Langsa,Aceh,Luar Jawa
-LOC030,Madiun,Jawa Timur,Jawa Timur & Bali Nusra
-LOC031,Kota Administrasi Jakarta Barat,DKI Jakarta,Jabodetabek
-LOC032,Salatiga,Jawa Tengah,Jawa Tengah & DIY
-LOC033,Kotamobagu,Sulawesi Utara,Luar Jawa
-LOC034,Palangkaraya,Kalimantan Tengah,Luar Jawa
-LOC035,Bekasi,Jawa Barat,Jabodetabek
-LOC036,Tasikmalaya,Jawa Barat,Jawa Barat
-LOC037,Surakarta,Jawa Tengah,Jawa Tengah & DIY
-LOC038,Balikpapan,Kalimantan Timur,Luar Jawa
-LOC039,Payakumbuh,Sumatera Barat,Luar Jawa
-LOC040,Surakarta,Jawa Tengah,Jawa Tengah & DIY
-LOC041,Sawahlunto,Sumatera Barat,Luar Jawa
-LOC042,Mojokerto,Jawa Timur,Jawa Timur & Bali Nusra
-LOC043,Jambi,Jambi,Luar Jawa
-LOC044,Tual,Maluku,Luar Jawa
-LOC045,Kupang,Nusa Tenggara Timur,Jawa Timur & Bali Nusra
-LOC046,Kediri,Jawa Timur,Jawa Timur & Bali Nusra
-LOC047,Bima,Nusa Tenggara Barat,Jawa Timur & Bali Nusra
-LOC048,Lubuklinggau,Sumatera Selatan,Luar Jawa
-LOC049,Pekanbaru,Riau,Luar Jawa
-LOC050,Cirebon,Jawa Barat,Jawa Barat
-LOC051,Tangerang Selatan,Banten,Jabodetabek
-LOC052,Tual,Maluku,Luar Jawa
-LOC053,Bau-Bau,Sulawesi Tenggara,Luar Jawa
-LOC054,Kendari,Sulawesi Tenggara,Luar Jawa
-LOC055,Tomohon,Sulawesi Utara,Luar Jawa
-LOC056,Denpasar,Bali,Jawa Timur & Bali Nusra
-LOC057,Padang,Sumatera Barat,Luar Jawa
-LOC058,Dumai,Riau,Luar Jawa
-LOC059,Madiun,Jawa Timur,Jawa Timur & Bali Nusra
-LOC060,Bogor,Jawa Barat,Jabodetabek
-LOC061,Semarang,Jawa Tengah,Jawa Tengah & DIY
-LOC062,Bandung,Jawa Barat,Jawa Barat
-LOC063,Padang Sidempuan,Sumatera Utara,Luar Jawa
-LOC064,Payakumbuh,Sumatera Barat,Luar Jawa
-LOC065,Sawahlunto,Sumatera Barat,Luar Jawa
-LOC066,Pasuruan,Jawa Timur,Jawa Timur & Bali Nusra
-LOC067,Pontianak,Kalimantan Barat,Luar Jawa
-LOC068,Medan,Sumatera Utara,Luar Jawa
-LOC069,Batu,Jawa Timur,Jawa Timur & Bali Nusra
-LOC070,Kupang,Nusa Tenggara Timur,Jawa Timur & Bali Nusra
-LOC071,Probolinggo,Jawa Timur,Jawa Timur & Bali Nusra
-LOC072,Pagaralam,Sumatera Selatan,Luar Jawa
-LOC073,Tual,Maluku,Luar Jawa
-LOC074,Bontang,Kalimantan Timur,Luar Jawa
-LOC075,Makassar,Sulawesi Selatan,Luar Jawa
-LOC076,Makassar,Sulawesi Selatan,Luar Jawa
-LOC077,Palangkaraya,Kalimantan Tengah,Luar Jawa
-LOC078,Tanjungbalai,Sumatera Utara,Luar Jawa
-LOC079,Jambi,Jambi,Luar Jawa
-LOC080,Langsa,Aceh,Luar Jawa
-LOC081,Purwokerto,Jawa Tengah,Jawa Tengah & DIY
-LOC082,Tanjungpinang,Kepulauan Riau,Luar Jawa
-LOC083,Sorong,Papua Barat,Luar Jawa
-LOC084,Banjarbaru,Kalimantan Selatan,Luar Jawa
-LOC085,Palangkaraya,Kalimantan Tengah,Luar Jawa
-LOC086,Batu,Jawa Timur,Jawa Timur & Bali Nusra
-LOC087,Bengkulu,Bengkulu,Luar Jawa
-LOC088,Ambon,Maluku,Luar Jawa
-LOC089,Kediri,Jawa Timur,Jawa Timur & Bali Nusra
-LOC090,Bontang,Kalimantan Timur,Luar Jawa
-LOC091,Palopo,Sulawesi Selatan,Luar Jawa
-LOC092,Ternate,Maluku Utara,Luar Jawa
-LOC093,Purwokerto,Jawa Tengah,Jawa Tengah & DIY
-LOC094,Depok,Jawa Barat,Jabodetabek
-LOC095,Lubuklinggau,Sumatera Selatan,Luar Jawa
-LOC096,Kota Administrasi Jakarta Utara,DKI Jakarta,Jabodetabek
-LOC097,Bau-Bau,Sulawesi Tenggara,Luar Jawa
-LOC098,Magelang,Jawa Tengah,Jawa Tengah & DIY
-LOC099,Depok,Jawa Barat,Jabodetabek
-LOC100,Palu,Sulawesi Tengah,Luar Jawa
+LOC001,Bekasi,Jawa Barat,Jabodetabek
+LOC002,Sabang,Aceh,Luar Jawa
+LOC003,Denpasar,Bali,Jawa Timur & Bali Nusra
+LOC004,Pasuruan,Jawa Timur,Jawa Timur & Bali Nusra
+LOC005,Mataram,Nusa Tenggara Barat,Jawa Timur & Bali Nusra
+LOC006,Probolinggo,Jawa Timur,Jawa Timur & Bali Nusra
+LOC007,Langsa,Aceh,Luar Jawa
+LOC008,Pontianak,Kalimantan Barat,Luar Jawa
+LOC009,Sabang,Aceh,Luar Jawa
+LOC010,Balikpapan,Kalimantan Timur,Luar Jawa
+LOC011,Tual,Maluku,Luar Jawa
+LOC012,Tomohon,Sulawesi Utara,Luar Jawa
+LOC013,Payakumbuh,Sumatera Barat,Luar Jawa
+LOC014,Makassar,Sulawesi Selatan,Luar Jawa
+LOC015,Bogor,Jawa Barat,Jabodetabek
+LOC016,Ambon,Maluku,Luar Jawa
+LOC017,Payakumbuh,Sumatera Barat,Luar Jawa
+LOC018,Sukabumi,Jawa Barat,Jawa Barat
+LOC019,Cirebon,Jawa Barat,Jawa Barat
+LOC020,Bima,Nusa Tenggara Barat,Jawa Timur & Bali Nusra
+LOC021,Tanjungpinang,Kepulauan Riau,Luar Jawa
+LOC022,Purwokerto,Jawa Tengah,Jawa Tengah & DIY
+LOC023,Jambi,Jambi,Luar Jawa
+LOC024,Padang,Sumatera Barat,Luar Jawa
+LOC025,Yogyakarta,DI Yogyakarta,Jawa Tengah & DIY
+LOC026,Palopo,Sulawesi Selatan,Luar Jawa
+LOC027,Bontang,Kalimantan Timur,Luar Jawa
+LOC028,Sukabumi,Jawa Barat,Jawa Barat
+LOC029,Samarinda,Kalimantan Timur,Luar Jawa
+LOC030,Bima,Nusa Tenggara Barat,Jawa Timur & Bali Nusra
+LOC031,Denpasar,Bali,Jawa Timur & Bali Nusra
+LOC032,Pasuruan,Jawa Timur,Jawa Timur & Bali Nusra
+LOC033,Makassar,Sulawesi Selatan,Luar Jawa
+LOC034,Tanjungpinang,Kepulauan Riau,Luar Jawa
+LOC035,Ternate,Maluku Utara,Luar Jawa
+LOC036,Mataram,Nusa Tenggara Barat,Jawa Timur & Bali Nusra
+LOC037,Tasikmalaya,Jawa Barat,Jawa Barat
+LOC038,Kotamobagu,Sulawesi Utara,Luar Jawa
+LOC039,Lubuklinggau,Sumatera Selatan,Luar Jawa
+LOC040,Medan,Sumatera Utara,Luar Jawa
+LOC041,Mataram,Nusa Tenggara Barat,Jawa Timur & Bali Nusra
+LOC042,Palu,Sulawesi Tengah,Luar Jawa
+LOC043,Ternate,Maluku Utara,Luar Jawa
+LOC044,Jambi,Jambi,Luar Jawa
+LOC045,Ternate,Maluku Utara,Luar Jawa
+LOC046,Kupang,Nusa Tenggara Timur,Jawa Timur & Bali Nusra
+LOC047,Kupang,Nusa Tenggara Timur,Jawa Timur & Bali Nusra
+LOC048,Tangerang Selatan,Banten,Jabodetabek
+LOC049,Padang Sidempuan,Sumatera Utara,Luar Jawa
+LOC050,Kota Administrasi Jakarta Barat,DKI Jakarta,Jabodetabek
+LOC051,Cirebon,Jawa Barat,Jawa Barat
+LOC052,Sukabumi,Jawa Barat,Jawa Barat
+LOC053,Bogor,Jawa Barat,Jabodetabek
+LOC054,Jambi,Jambi,Luar Jawa
+LOC055,Bekasi,Jawa Barat,Jabodetabek
+LOC056,Tual,Maluku,Luar Jawa
+LOC057,Salatiga,Jawa Tengah,Jawa Tengah & DIY
+LOC058,Kediri,Jawa Timur,Jawa Timur & Bali Nusra
+LOC059,Mojokerto,Jawa Timur,Jawa Timur & Bali Nusra
+LOC060,Kediri,Jawa Timur,Jawa Timur & Bali Nusra
+LOC061,Bima,Nusa Tenggara Barat,Jawa Timur & Bali Nusra
+LOC062,Lubuklinggau,Sumatera Selatan,Luar Jawa
+LOC063,Pasuruan,Jawa Timur,Jawa Timur & Bali Nusra
+LOC064,Yogyakarta,DI Yogyakarta,Jawa Tengah & DIY
+LOC065,Padangpanjang,Sumatera Barat,Luar Jawa
+LOC066,Palopo,Sulawesi Selatan,Luar Jawa
+LOC067,Mojokerto,Jawa Timur,Jawa Timur & Bali Nusra
+LOC068,Yogyakarta,DI Yogyakarta,Jawa Tengah & DIY
+LOC069,Padangpanjang,Sumatera Barat,Luar Jawa
+LOC070,Purwokerto,Jawa Tengah,Jawa Tengah & DIY
+LOC071,Bandung,Jawa Barat,Jawa Barat
+LOC072,Tanjungbalai,Sumatera Utara,Luar Jawa
+LOC073,Medan,Sumatera Utara,Luar Jawa
+LOC074,Magelang,Jawa Tengah,Jawa Tengah & DIY
+LOC075,Kota Administrasi Jakarta Utara,DKI Jakarta,Jabodetabek
+LOC076,Mataram,Nusa Tenggara Barat,Jawa Timur & Bali Nusra
+LOC077,Tangerang Selatan,Banten,Jabodetabek
+LOC078,Pangkalpinang,Kepulauan Bangka Belitung,Luar Jawa
+LOC079,Ternate,Maluku Utara,Luar Jawa
+LOC080,Kediri,Jawa Timur,Jawa Timur & Bali Nusra
+LOC081,Madiun,Jawa Timur,Jawa Timur & Bali Nusra
+LOC082,Sawahlunto,Sumatera Barat,Luar Jawa
+LOC083,Kota Administrasi Jakarta Utara,DKI Jakarta,Jabodetabek
+LOC084,Padang,Sumatera Barat,Luar Jawa
+LOC085,Kota Administrasi Jakarta Selatan,DKI Jakarta,Jabodetabek
+LOC086,Pekanbaru,Riau,Luar Jawa
+LOC087,Sabang,Aceh,Luar Jawa
+LOC088,Magelang,Jawa Tengah,Jawa Tengah & DIY
+LOC089,Padangpanjang,Sumatera Barat,Luar Jawa
+LOC090,Kotamobagu,Sulawesi Utara,Luar Jawa
+LOC091,Langsa,Aceh,Luar Jawa
+LOC092,Sorong,Papua Barat,Luar Jawa
+LOC093,Kendari,Sulawesi Tenggara,Luar Jawa
+LOC094,Kotamobagu,Sulawesi Utara,Luar Jawa
+LOC095,Batu,Jawa Timur,Jawa Timur & Bali Nusra
+LOC096,Samarinda,Kalimantan Timur,Luar Jawa
+LOC097,Pontianak,Kalimantan Barat,Luar Jawa
+LOC098,Palangkaraya,Kalimantan Tengah,Luar Jawa
+LOC099,Bogor,Jawa Barat,Jabodetabek
+LOC100,Jambi,Jambi,Luar Jawa

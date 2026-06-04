@@ -42,7 +42,7 @@ def render(filters: dict):
     # Peak Trading Hours Heatmap
     section_header("Peak Trading Hours Heatmap")
     fig = heatmap_dow_hour(df_heatmap, title="Order Volume Density: Day vs Hour")
-    st.plotly_chart(fig, use_container_width=True, theme=None)
+    st.plotly_chart(fig, width="stretch", theme=None)
 
     # Hourly distribution charts
     section_header("Hourly Order Volume, Revenue & Cancellation Trends")
@@ -53,7 +53,7 @@ def render(filters: dict):
             df_hourly, x="hour", y="total_orders",
             title="Hourly Total Orders Volume",
         )
-        st.plotly_chart(fig, use_container_width=True, theme=None)
+        st.plotly_chart(fig, width="stretch", theme=None)
 
     with col2:
         fig = line_trend(
@@ -61,7 +61,7 @@ def render(filters: dict):
             title="Hourly Revenue Generation",
         )
         fig.update_traces(line=dict(color="var(--cyan)", width=2.5), fillcolor="rgba(0,212,255,0.08)")
-        st.plotly_chart(fig, use_container_width=True, theme=None)
+        st.plotly_chart(fig, width="stretch", theme=None)
 
     with col3:
         fig = line_trend(
@@ -69,7 +69,7 @@ def render(filters: dict):
             title="Hourly Cancellation Rate (%) Analysis",
         )
         fig.update_traces(line=dict(color="#E82C2C", width=2.5), fillcolor="rgba(232,44,44,0.08)")
-        st.plotly_chart(fig, use_container_width=True, theme=None)
+        st.plotly_chart(fig, width="stretch", theme=None)
 
     # Quarterly aggregations
     section_header("Quarterly Revenue Performance Trends")
@@ -85,7 +85,7 @@ def render(filters: dict):
         df_q_chart, x="period", y="total_revenue",
         color="year", title="Quarterly Revenue Comparisons",
     )
-    st.plotly_chart(fig, use_container_width=True, theme=None)
+    st.plotly_chart(fig, width="stretch", theme=None)
 
     with st.expander("📊 View Quarterly Revenue Data Sheet", expanded=False):
         st.markdown(df_quarterly.to_html(classes="custom-table", index=False, escape=False), unsafe_allow_html=True)
@@ -97,7 +97,7 @@ def render(filters: dict):
         x="total_orders", y="city",
         title="Top 20 Demand Cities by Order Volume",
     )
-    st.plotly_chart(fig, use_container_width=True, theme=None)
+    st.plotly_chart(fig, width="stretch", theme=None)
 
     # Automated Insights Generation
     peak_hour     = df_hourly.loc[df_hourly["total_orders"].idxmax(), "hour"]
