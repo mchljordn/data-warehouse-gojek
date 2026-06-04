@@ -44,7 +44,7 @@ def render(filters: dict):
 
     # Show warning if selected filters return empty data
     if df_summary.empty:
-        st.warning("⚠️ No fleet data found matching the selected Global Filters combination. Please adjust your sidebar settings.")
+        st.warning("No fleet data found matching the selected Global Filters combination. Please adjust your sidebar settings.")
         return
 
     # Fleet Status Overview
@@ -55,7 +55,7 @@ def render(filters: dict):
     col1, col2, col3, col4 = st.columns(4)
     col1.metric("Active Drivers Count", format_number(aktif_df['driver_count'].sum()))
     col2.metric("Total Driver Gross Revenue", format_rupiah(total_rev), help=f"Full Value: {format_rupiah(total_rev)}")
-    col3.metric("Fleet Average Customer Rating", f"{df_summary['avg_rating'].mean():.2f} ⭐")
+    col3.metric("Fleet Average Customer Rating", f"{df_summary['avg_rating'].mean():.2f} / 5.0")
     col4.metric("Average Trip Distance", f"{df_summary['avg_distance_km'].mean():.1f} km")
 
     # Performance statistics by vehicle
@@ -103,7 +103,7 @@ def render(filters: dict):
     section_header("Top 20 Active High-Earner Drivers")
     display_top = df_top.copy()
     display_top["total_revenue"] = display_top["total_revenue"].apply(format_rupiah)
-    display_top["rating"] = display_top["rating"].apply(lambda x: f"⭐ {x}")
+    display_top["rating"] = display_top["rating"].apply(lambda x: f"{x} / 5.0")
     df_html = display_top.rename(columns={
         "driver_id": "Driver ID", "vehicle_type": "Vehicle Type",
         "driver_status": "Status", "rating": "Rating",
@@ -111,7 +111,7 @@ def render(filters: dict):
         "total_revenue": "Total Revenue", "avg_distance_km": "Avg Distance (km)",
     }).to_html(classes="custom-table", index=False, escape=False)
     
-    with st.expander("📊 View Top 20 Active High-Earner Drivers Table", expanded=False):
+    with st.expander("View Top 20 Active High-Earner Drivers Table", expanded=False):
         st.markdown(df_html, unsafe_allow_html=True)
 
     # Automated Insights Generation

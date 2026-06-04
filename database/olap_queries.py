@@ -110,9 +110,9 @@ def q_revenue_by_region(years: list = None, regions: list = None, services: list
     where_clause = _build_where_clause(years, regions, services)
     return f"""
     SELECT
-        CASE WHEN GROUPING(l.region) = 1 THEN '📊 ALL REGIONS' ELSE l.region END     AS region,
-        CASE WHEN GROUPING(l.province) = 1 THEN '📌 ALL PROVINCES' ELSE l.province END AS province,
-        CASE WHEN GROUPING(l.city) = 1 THEN '🏙️ ALL CITIES' ELSE l.city END         AS city,
+        CASE WHEN GROUPING(l.region) = 1 THEN 'ALL REGIONS' ELSE l.region END     AS region,
+        CASE WHEN GROUPING(l.province) = 1 THEN 'ALL PROVINCES' ELSE l.province END AS province,
+        CASE WHEN GROUPING(l.city) = 1 THEN 'ALL CITIES' ELSE l.city END         AS city,
         COUNT(f.order_id)   AS total_orders,
         SUM(f.price)        AS total_revenue,
         ROUND(AVG(f.price)::numeric, 0) AS avg_price
@@ -256,10 +256,10 @@ def q_driver_rating_distribution(years: list = None, regions: list = None, servi
     SELECT
         d.vehicle_type,
         CASE
-            WHEN d.driver_rating >= 4.8 THEN '⭐ 4.8–5.0 (Elite)'
-            WHEN d.driver_rating >= 4.5 THEN '🟢 4.5–4.7 (Good)'
-            WHEN d.driver_rating >= 4.0 THEN '🟡 4.0–4.4 (Average)'
-            ELSE                              '🔴 < 4.0 (Low)'
+            WHEN d.driver_rating >= 4.8 THEN '4.8-5.0 (Elite)'
+            WHEN d.driver_rating >= 4.5 THEN '4.5-4.7 (Good)'
+            WHEN d.driver_rating >= 4.0 THEN '4.0-4.4 (Average)'
+            ELSE                              '< 4.0 (Low)'
         END                                         AS rating_bucket,
         COUNT(DISTINCT d.driver_id)                 AS driver_count,
         ROUND(AVG(d.driver_rating)::numeric, 3)     AS avg_rating

@@ -36,7 +36,7 @@ def render(filters: dict):
 
     # Show warning if selected filters return empty data
     if df_cities.empty:
-        st.warning("⚠️ No data found matching the selected Global Filters combination. Please adjust your sidebar settings.")
+        st.warning("No data found matching the selected Global Filters combination. Please adjust your sidebar settings.")
         return
 
     # Peak Trading Hours Heatmap
@@ -87,7 +87,7 @@ def render(filters: dict):
     )
     st.plotly_chart(fig, width="stretch", theme=None)
 
-    with st.expander("📊 View Quarterly Revenue Data Sheet", expanded=False):
+    with st.expander("View Quarterly Revenue Data Sheet", expanded=False):
         st.markdown(df_quarterly.to_html(classes="custom-table", index=False, escape=False), unsafe_allow_html=True)
 
     # Regional demand volumes

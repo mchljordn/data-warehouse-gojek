@@ -47,7 +47,7 @@ with st.sidebar:
 
     # Silent database connection check (stops rendering and shows error only on failure)
     if not test_connection():
-        st.error("🔴 Connection Failed - Check secrets.toml")
+        st.error("Connection Failed - Check secrets.toml")
         st.stop()
 
     # Theme state initialization
@@ -58,7 +58,7 @@ with st.sidebar:
     # Sidebar Header & Theme Toggle Column Layout
     col_title, col_theme = st.columns([8, 1.5])
     with col_title:
-        st.markdown("**🔍 Global Filters**")
+        st.markdown("**Global Filters**")
     with col_theme:
         icon = "☀️" if theme == "Dark Mode" else "🌙"
         if st.button(icon, key="theme_toggle_btn", help="Toggle Light/Dark Theme"):
@@ -144,28 +144,24 @@ try:
     
     kpi_grid([
         {
-            "icon": "💰",
             "label": "Total Revenue",
             "value": format_rupiah(total_revenue),
             "sub": f"{format_number(total_orders)} total orders",
             "accent": "var(--green)",
         },
         {
-            "icon": "📦",
             "label": "Average Order Value (AOV)",
             "value": format_rupiah(avg_order_value),
             "sub": f"Avg distance: {avg_distance:.1f} km",
             "accent": "var(--cyan)",
         },
         {
-            "icon": "🎟️",
             "label": "Total Discount",
             "value": format_rupiah(total_discount),
             "sub": "Discount across active segments",
             "accent": "var(--orange)",
         },
         {
-            "icon": "❌",
             "label": "Cancellation Rate",
             "value": f"{cancellation_rate:.2f}%",
             "sub": "Target: < 15.00%",
@@ -173,14 +169,12 @@ try:
             "delta": f"+{cancellation_rate:.2f}%" if cancellation_rate > 15 else f"{cancellation_rate:.2f}%",
         },
         {
-            "icon": "👥",
             "label": "Unique Customers",
             "value": format_number(unique_customers),
             "sub": "Distinct active users",
             "accent": "var(--purple)",
         },
         {
-            "icon": "🛵",
             "label": "Active Drivers",
             "value": format_number(active_drivers),
             "sub": "Fitted partner fleet",
@@ -194,10 +188,10 @@ st.markdown("---")
 
 # Main Navigation Tabs
 tab_rev, tab_driver, tab_demand, tab_customer = st.tabs([
-    "💰   Revenue & Service",
-    "🛵   Driver Performance",
-    "⏱️   Demand & Time",
-    "👥   Customer & Discount",
+    "Revenue & Service",
+    "Driver Performance",
+    "Demand & Time",
+    "Customer & Discount",
 ])
 
 with tab_rev:

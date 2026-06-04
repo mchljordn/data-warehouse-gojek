@@ -36,7 +36,7 @@ def render(filters: dict):
 
     # Show warning if selected filters return empty data
     if df_service.empty or df_cities.empty or df_region.empty:
-        st.warning("⚠️ No data found matching the selected Global Filters combination. Please adjust your sidebar settings.")
+        st.warning("No data found matching the selected Global Filters combination. Please adjust your sidebar settings.")
         return
 
     # Service Breakdown & Payment Methods
@@ -76,9 +76,9 @@ def render(filters: dict):
 
     # Regional Revenue Distribution
     section_header("Regional Revenue Distribution")
-    with st.expander("📊 View Regional Revenue Data Sheet", expanded=False):
+    with st.expander("View Regional Revenue Data Sheet", expanded=False):
         # Exclude national totals from detailed display
-        display_df = df_region[df_region["region"] != '📊 ALL REGIONS'].copy()
+        display_df = df_region[df_region["region"] != 'ALL REGIONS'].copy()
         
         # Format total revenue as IDR currency
         display_df["total_revenue"] = display_df["total_revenue"].apply(

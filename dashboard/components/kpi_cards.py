@@ -323,9 +323,10 @@ def kpi_grid(cards: list[dict]):
             cls = "kpi-delta-pos" if str(d).startswith("+") or (isinstance(d, (int, float)) and d >= 0) else "kpi-delta-neg"
             delta_html = f'<div class="{cls}">{d}</div>'
 
+        icon_html = f'<div class="kpi-icon">{c["icon"]}</div>' if c.get("icon") else ""
         cards_html += f"""
 <div class="kpi-card" style="--accent-color:{accent}">
-<div class="kpi-icon">{c.get("icon","📊")}</div>
+{icon_html}
 <div class="kpi-label">{c["label"]}</div>
 <div class="kpi-value">{c["value"]}</div>
 {f'<div class="kpi-sub">{c["sub"]}</div>' if c.get("sub") else ""}
@@ -344,6 +345,6 @@ def insight_box(title: str, points: list[str]):
     items = "".join(f"<li>{p}</li>" for p in points)
     st.markdown(f"""
     <div class="insight-box">
-        <div class="insight-title">💡 {title}</div>
+        <div class="insight-title">{title}</div>
         <ul>{items}</ul>
     </div>""", unsafe_allow_html=True)

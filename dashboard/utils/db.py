@@ -29,7 +29,7 @@ def get_connection_string() -> str:
         return f"postgresql://{cfg['user']}:{cfg['password']}@{host}:{cfg['port']}/{cfg['dbname']}"
     
     except Exception as e:
-        st.error(f"🔴 Gagal memuat kredensial database via Bypass Manual: {e}")
+        st.error(f"Gagal memuat kredensial database via Bypass Manual: {e}")
         return ""
 
 

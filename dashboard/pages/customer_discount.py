@@ -43,7 +43,7 @@ def render(filters: dict):
     ].head(15).sort_values("cancellation_rate_pct", ascending=False)
 
     if df_discount.empty or df_cancel.empty:
-        st.warning("⚠️ No data found matching the selected Global Filters combination. Please adjust your sidebar settings.")
+        st.warning("No data found matching the selected Global Filters combination. Please adjust your sidebar settings.")
         return
 
     # Customer Demographics
@@ -70,7 +70,7 @@ def render(filters: dict):
         )
         st.plotly_chart(fig, width="stretch", theme=None)
 
-    with st.expander("📊 View Multi-dimensional Demographics Table", expanded=False):
+    with st.expander("View Multi-dimensional Demographics Table", expanded=False):
         st.markdown(df_customer.to_html(classes="custom-table", index=False, escape=False), unsafe_allow_html=True)
 
     # Discount Effectiveness
