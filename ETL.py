@@ -4,24 +4,20 @@ from faker import Faker
 import random
 from datetime import datetime, timedelta
 import os
-import getpass
 import sys
 import json
+import toml
 
 # --- SETUP KONEKSI ---
-# Ambil password dari env PGPASSWORD atau prompt
-PG_USER = os.getenv('PGUSER', 'postgres')
-PG_PASS = os.getenv('PGPASSWORD')
-PG_HOST = os.getenv('PGHOST', 'localhost')
-PG_PORT = os.getenv('PGPORT', 5432)
-DB_NAME = 'dwh_gojek'
+# Baca credentials dari secrets.toml
+secrets = toml.load(".streamlit/secrets.toml")
+cfg = secrets["postgres"]
 
-if not PG_PASS:
-    try:
-        PG_PASS = getpass.getpass(prompt='Postgres password for user postgres: ')
-    except Exception:
-        print('Could not read password. Set PGPASSWORD env var and retry.')
-        sys.exit(1)
+PG_USER = cfg["user"]
+PG_PASS = cfg["password"]
+PG_HOST = cfg["host"]
+PG_PORT = cfg["port"]
+DB_NAME = cfg["dbname"]
 
 # Buat connection string dengan password
 conn_str = f'postgresql://{PG_USER}:{PG_PASS}@{PG_HOST}:{PG_PORT}/{DB_NAME}'
