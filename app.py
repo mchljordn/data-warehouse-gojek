@@ -15,7 +15,7 @@ st.set_page_config(
 )
 
 # Imports
-from dashboard.utils.db import run_query, test_connection, format_rupiah, format_number, format_rupiah, format_number
+from dashboard.utils.db import run_query, test_connection, format_rupiah, format_number
 from database.olap_queries import (
     q_kpi_summary, q_filter_years,
     q_filter_regions, q_filter_services,
