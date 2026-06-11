@@ -129,7 +129,6 @@ try:
     
     kpi_grid([
         {
-        {
             "icon": "",
             "label": "Gross Revenue",
             "value": format_rupiah(total_revenue),
