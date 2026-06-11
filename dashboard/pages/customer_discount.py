@@ -164,11 +164,6 @@ def render(filters: dict):
         f"successfully drove the highest completion rate at <b>{best_disc['completion_rate_pct']}%</b>.",
         f"The <b>{worst_svc['service_name'].title()}</b> service recorded the highest cancellation rate at "
         f"<b>{worst_svc['cancellation_rate_pct']}%</b>. Fleet managers should investigate driver supply constraints in active areas.",
-<<<<<<< HEAD
-        f"Subsidy distribution displays diminishing returns when discounts exceed IDR 5,000 across sectors. "
-        f"Concentrating high-value promotions on the productive segments will optimize marketing ROI.",
-=======
         f"Subsidy distribution displays diminishing returns when discounts exceed Rp 5.000,00 across sectors. "
-        f"Concentrating high-value promotions on the productive 26-35 age group will optimize marketing ROI.",
->>>>>>> origin/main
+        f"Concentrating high-value promotions on the productive segments will optimize marketing ROI.",
     ])
