@@ -8,31 +8,24 @@ from dashboard.utils.db import run_query, format_rupiah, format_number
 from database.olap_queries import (
     q_revenue_by_service, q_revenue_monthly_trend,
     q_top_cities_revenue, q_payment_method_breakdown,
-    q_revenue_by_region,
+    q_revenue_by_region, q_payment_cancellation_rate,
+    q_geo_tier_segmentation
 )
 from dashboard.components.charts import (
-    bar_horizontal, line_trend, donut,
+    bar_horizontal, line_trend, donut, bar_grouped,
 )
 from dashboard.components.kpi_cards import section_header, insight_box
 
 
 def render(filters: dict):
     # Fetch data based on dynamic sidebar filters
-    df_service  = run_query(q_revenue_by_service(
-        years=filters.get("years"), regions=filters.get("regions"), services=filters.get("services")
-    ))
-    df_trend    = run_query(q_revenue_monthly_trend(
-        years=filters.get("years"), regions=filters.get("regions"), services=filters.get("services")
-    ))
-    df_cities   = run_query(q_top_cities_revenue(
-        limit=15, years=filters.get("years"), regions=filters.get("regions"), services=filters.get("services")
-    ))
-    df_payment  = run_query(q_payment_method_breakdown(
-        years=filters.get("years"), regions=filters.get("regions"), services=filters.get("services")
-    ))
-    df_region   = run_query(q_revenue_by_region(
-        years=filters.get("years"), regions=filters.get("regions"), services=filters.get("services")
-    ))
+    df_service  = run_query(q_revenue_by_service(**filters))
+    df_trend    = run_query(q_revenue_monthly_trend(**filters))
+    df_cities   = run_query(q_top_cities_revenue(limit=15, **filters))
+    df_payment  = run_query(q_payment_method_breakdown(**filters))
+    df_region   = run_query(q_revenue_by_region(**filters))
+    df_pay_cancel = run_query(q_payment_cancellation_rate(**filters))
+    df_geo_tier = run_query(q_geo_tier_segmentation(**filters))
 
     # Show warning if selected filters return empty data
     if df_service.empty or df_cities.empty or df_region.empty:
@@ -55,6 +48,14 @@ def render(filters: dict):
         fig = donut(df_payment, names="payment_method", values="total_revenue",
                     title="Revenue Proportion by Payment Method")
         st.plotly_chart(fig, width="stretch", theme=None)
+
+    # Payment Method Cancellation Analysis
+    section_header("Payment Method Cancellation Analysis")
+    fig = bar_grouped(
+        df_pay_cancel, x="payment_category", y="cancellation_rate_pct",
+        color="payment_category", title="Cancellation Rate: Cash vs Cashless"
+    )
+    st.plotly_chart(fig, use_container_width=True, theme=None)
 
     # Monthly Trends
     section_header("Monthly Revenue Trend")
@@ -85,6 +86,22 @@ def render(filters: dict):
             format_rupiah
         )
         st.markdown(display_df.to_html(classes="custom-table", index=False, escape=False), unsafe_allow_html=True)
+        
+    # Geo-Tier: Jawa vs Luar Jawa
+    section_header("Geo-Tier Performance: Jawa vs Luar Jawa")
+    colA, colB = st.columns(2)
+    with colA:
+        fig = donut(
+            df_geo_tier, names="geo_tier", values="total_orders",
+            title="Order Volume Proportion"
+        )
+        st.plotly_chart(fig, use_container_width=True, theme=None)
+    with colB:
+        fig = donut(
+            df_geo_tier, names="geo_tier", values="total_revenue",
+            title="Revenue Proportion"
+        )
+        st.plotly_chart(fig, use_container_width=True, theme=None)
 
     # Detailed Service Sector Performance
     section_header("Detailed Service Sector Performance")

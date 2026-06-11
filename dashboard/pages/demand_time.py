@@ -8,31 +8,22 @@ from dashboard.utils.db import run_query
 from database.olap_queries import (
     q_peak_hour_heatmap, q_orders_by_hour,
     q_revenue_by_quarter, q_cancellation_by_hour,
-    q_top_cities_revenue,
+    q_top_cities_revenue, q_time_of_day_segmentation
 )
 from dashboard.components.charts import (
-    heatmap_dow_hour, line_trend, bar_horizontal, bar_grouped,
+    heatmap_dow_hour, line_trend, bar_horizontal, bar_grouped, donut
 )
 from dashboard.components.kpi_cards import section_header, insight_box
 
 
 def render(filters: dict):
     # Fetch data based on dynamic sidebar filters
-    df_heatmap   = run_query(q_peak_hour_heatmap(
-        years=filters.get("years"), regions=filters.get("regions"), services=filters.get("services")
-    ))
-    df_hourly    = run_query(q_orders_by_hour(
-        years=filters.get("years"), regions=filters.get("regions"), services=filters.get("services")
-    ))
-    df_quarterly = run_query(q_revenue_by_quarter(
-        years=filters.get("years"), regions=filters.get("regions"), services=filters.get("services")
-    ))
-    df_cancel_hr = run_query(q_cancellation_by_hour(
-        years=filters.get("years"), regions=filters.get("regions"), services=filters.get("services")
-    ))
-    df_cities    = run_query(q_top_cities_revenue(
-        limit=20, years=filters.get("years"), regions=filters.get("regions"), services=filters.get("services")
-    ))
+    df_heatmap   = run_query(q_peak_hour_heatmap(**filters))
+    df_hourly    = run_query(q_orders_by_hour(**filters))
+    df_quarterly = run_query(q_revenue_by_quarter(**filters))
+    df_cancel_hr = run_query(q_cancellation_by_hour(**filters))
+    df_cities    = run_query(q_top_cities_revenue(limit=20, **filters))
+    df_tod       = run_query(q_time_of_day_segmentation(**filters))
 
     # Show warning if selected filters return empty data
     if df_cities.empty:
@@ -70,6 +61,22 @@ def render(filters: dict):
         )
         fig.update_traces(line=dict(color="#E82C2C", width=2.5), fillcolor="rgba(232,44,44,0.08)")
         st.plotly_chart(fig, width="stretch", theme=None)
+
+    # Time of Day Segmentation
+    section_header("Time of Day Segmentation")
+    colA, colB = st.columns(2)
+    with colA:
+        fig = donut(
+            df_tod, names="time_of_day", values="total_orders",
+            title="Order Volume by Time of Day",
+        )
+        st.plotly_chart(fig, use_container_width=True, theme=None)
+    with colB:
+        fig = donut(
+            df_tod, names="time_of_day", values="total_revenue",
+            title="Revenue Generation by Time of Day",
+        )
+        st.plotly_chart(fig, use_container_width=True, theme=None)
 
     # Quarterly aggregations
     section_header("Quarterly Revenue Performance Trends")

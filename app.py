@@ -9,19 +9,18 @@ import numpy as np
 # Page configuration
 st.set_page_config(
     page_title="GoGrab Data Warehouse Analytics",
-    page_icon="🛵",
+    page_icon="",
     layout="wide",
     initial_sidebar_state="expanded",
 )
 
 # Imports
-from dashboard.utils.db import run_query, test_connection, format_rupiah, format_number
+from dashboard.utils.db import run_query, test_connection, format_rupiah, format_number, format_rupiah, format_number
 from database.olap_queries import (
     q_kpi_summary, q_filter_years,
     q_filter_regions, q_filter_services,
-    q_revenue_monthly_trend,
-    q_revenue_by_service,
-    q_top_cities_revenue
+    q_filter_cities, q_filter_vehicles,
+    q_filter_payments
 )
 from dashboard.components.kpi_cards import inject_styles, kpi_grid, section_header
 import dashboard.pages.revenue           as pg_revenue
@@ -33,7 +32,7 @@ import dashboard.pages.customer_discount  as pg_customer
 with st.sidebar:
     st.html("""
     <div style="padding:16px 0 24px; text-align:center; font-family: sans-serif;">
-        <div style="font-size:32px; margin-bottom:4px;">🛵</div>
+        <div style="font-size:32px; margin-bottom:4px;"></div>
         <div style="font-size:17px; font-weight:700; color: var(--text-primary); letter-spacing:-0.01em;">
             GoGrab Data Warehouse
         </div>
@@ -60,58 +59,47 @@ with st.sidebar:
     with col_title:
         st.markdown("**Global Filters**")
     with col_theme:
-        icon = "☀️" if theme == "Dark Mode" else "🌙"
+        icon = "" if theme == "Dark Mode" else ""
         if st.button(icon, key="theme_toggle_btn", help="Toggle Light/Dark Theme"):
             st.session_state.theme_selector = "Light Mode" if theme == "Dark Mode" else "Dark Mode"
             st.rerun()
 
-    # Year filter loading
+    # Load dynamic filter options from DWH
     try:
-        years_df  = run_query(q_filter_years())
-        all_years = sorted(years_df["year"].tolist())
-    except Exception:
-        all_years = [2023, 2024]
+        opt_years    = run_query(q_filter_years())['year'].astype(str).tolist()
+        opt_regions  = run_query(q_filter_regions())['region'].str.title().tolist()
+        opt_services = run_query(q_filter_services())['service_name'].str.title().tolist()
+        opt_cities   = run_query(q_filter_cities())['city'].str.title().tolist()
+        opt_vehicles = run_query(q_filter_vehicles())['vehicle_type'].str.title().tolist()
+        opt_payments = run_query(q_filter_payments())['payment_method'].tolist()
+    except Exception as e:
+        st.error(f"Failed to load filters: {str(e)}")
+        opt_years, opt_regions, opt_services = [], [], []
+        opt_cities, opt_vehicles, opt_payments = [], [], []
 
-    selected_years = st.multiselect(
-        "Year", options=all_years, default=all_years, key="year_filter"
-    )
+    st.markdown('<div class="sidebar-header">Global Data Filters</div>', unsafe_allow_html=True)
+    
+    sel_years    = st.multiselect("Financial Year", options=opt_years, default=opt_years)
+    sel_regions  = st.multiselect("Operating Region", options=opt_regions, default=opt_regions)
+    sel_services = st.multiselect("Service Category", options=opt_services, default=opt_services)
+    sel_cities   = st.multiselect("Operating City", options=opt_cities, default=[])
+    sel_vehicles = st.multiselect("Vehicle Type", options=opt_vehicles, default=[])
+    sel_payments = st.multiselect("Payment Method", options=opt_payments, default=[])
 
-    # Region filter loading
-    try:
-        regions_df  = run_query(q_filter_regions())
-        all_regions = regions_df["region"].tolist()
-    except Exception:
-        all_regions = []
-
-    selected_regions = st.multiselect(
-        "Region", options=all_regions, default=[], key="region_filter",
-        placeholder="All regions",
-    )
-
-    # Service filter loading
-    try:
-        svc_df   = run_query(q_filter_services())
-        all_svcs = svc_df["service_name"].tolist()
-    except Exception:
-        all_svcs = []
-
-    selected_services = st.multiselect(
-        "Service", options=all_svcs, default=[], key="svc_filter",
-        placeholder="All services",
-    )
+    filters = {
+        "years": sel_years,
+        "regions": sel_regions,
+        "services": sel_services,
+        "cities": sel_cities,
+        "vehicle_types": sel_vehicles,
+        "payment_methods": sel_payments,
+    }
 
     st.markdown("---")
     st.caption("Universitas Padjadjaran · GoGrab Data Warehouse · 2026")
 
 # Global styles injection based on theme selector
 inject_styles(theme)
-
-# Filters compilation
-filters = {
-    "years":    selected_years,
-    "regions":  selected_regions,
-    "services": selected_services,
-}
 
 # Page header
 st.markdown("""
@@ -127,13 +115,10 @@ st.markdown("""
 
 # Reactive global KPI cards
 try:
-    kpi = run_query(q_kpi_summary(
-        years=filters.get("years"),
-        regions=filters.get("regions"),
-        services=filters.get("services")
-    )).iloc[0]
+    kpi = run_query(q_kpi_summary(**filters)).iloc[0]
 
     total_revenue = float(kpi['total_revenue'])
+    total_net_revenue = float(kpi['total_net_revenue'])
     total_orders = int(kpi['total_orders'])
     avg_order_value = float(kpi['avg_order_value'])
     total_discount = float(kpi['total_discount'])
@@ -144,13 +129,23 @@ try:
     
     kpi_grid([
         {
-            "label": "Total Revenue",
+        {
+            "icon": "",
+            "label": "Gross Revenue",
             "value": format_rupiah(total_revenue),
             "sub": f"{format_number(total_orders)} total orders",
             "accent": "var(--green)",
         },
         {
-            "label": "Average Order Value (AOV)",
+            "icon": "",
+            "label": "Net Revenue",
+            "value": format_rupiah(total_net_revenue),
+            "sub": f"After {format_rupiah(total_discount)} discount",
+            "accent": "var(--blue)",
+        },
+        {
+            "icon": "",
+            "label": "Average Order Value",
             "value": format_rupiah(avg_order_value),
             "sub": f"Avg distance: {avg_distance:.1f} km",
             "accent": "var(--cyan)",

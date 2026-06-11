@@ -9,6 +9,7 @@ from database.olap_queries import (
     q_driver_performance_summary,
     q_driver_rating_distribution,
     q_top_drivers,
+    q_driver_rating_revenue_impact,
 )
 from dashboard.components.charts import bar_grouped, gauge_kpi
 from dashboard.components.kpi_cards import section_header, insight_box
@@ -16,15 +17,10 @@ from dashboard.components.kpi_cards import section_header, insight_box
 
 def render(filters: dict):
     # Fetch data based on dynamic sidebar filters
-    df_summary = run_query(q_driver_performance_summary(
-        years=filters.get("years"), regions=filters.get("regions"), services=filters.get("services")
-    ))
-    df_rating  = run_query(q_driver_rating_distribution(
-        years=filters.get("years"), regions=filters.get("regions"), services=filters.get("services")
-    ))
-    df_top     = run_query(q_top_drivers(
-        limit=150, years=filters.get("years"), regions=filters.get("regions"), services=filters.get("services")
-    ))
+    df_summary = run_query(q_driver_performance_summary(**filters))
+    df_rating  = run_query(q_driver_rating_distribution(**filters))
+    df_top     = run_query(q_top_drivers(limit=150, **filters))
+    df_rating_rev = run_query(q_driver_rating_revenue_impact(**filters))
 
     # Apply fleet mapping based on service type filter
     if filters.get("services"):
@@ -98,6 +94,26 @@ def render(filters: dict):
             title="Driver Distribution across Rating Buckets",
         )
         st.plotly_chart(fig, width="stretch", theme=None)
+
+    # Driver Rating vs Revenue Impact
+    section_header("Revenue Impact by Driver Rating")
+    colA, colB = st.columns(2)
+    with colA:
+        fig = bar_grouped(
+            df_rating_rev.sort_values("rating_bucket"),
+            x="rating_bucket", y="total_revenue",
+            title="Total Revenue by Rating Bucket",
+            color="rating_bucket",
+        )
+        st.plotly_chart(fig, use_container_width=True, theme=None)
+    with colB:
+        fig = bar_grouped(
+            df_rating_rev.sort_values("rating_bucket"),
+            x="rating_bucket", y="revenue_per_driver",
+            title="Average Revenue per Driver in Bucket",
+            color="rating_bucket",
+        )
+        st.plotly_chart(fig, use_container_width=True, theme=None)
 
     # Top individual driver performers
     section_header("Top 20 Active High-Earner Drivers")
