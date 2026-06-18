@@ -1,5 +1,5 @@
 import pandas as pd
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 from faker import Faker
 import random
 from datetime import datetime, timedelta
@@ -109,6 +109,11 @@ df_fact.to_csv(os.path.join(output_dir, 'fact_order.csv'), index=False)
 
 # --- 4. PROSES LOAD KE POSTGRESQL ---
 try:
+    print("Membuat schema dwh jika belum ada...")
+    with engine.connect() as conn:
+        conn.execute(text(f"CREATE SCHEMA IF NOT EXISTS {DW_SCHEMA}"))
+        conn.commit()
+        
     print("Loading data ke PostgreSQL...")
     df_customer.to_sql('dim_customer', engine, schema=DW_SCHEMA, if_exists='append', index=False)
     df_driver.to_sql('dim_driver', engine, schema=DW_SCHEMA, if_exists='append', index=False)

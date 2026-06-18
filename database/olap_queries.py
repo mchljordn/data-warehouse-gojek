@@ -56,7 +56,7 @@ def q_kpi_summary(**filters) -> str:
     SELECT
         COUNT(f.order_id)                                                                   AS total_orders,
         COALESCE(SUM(f.price), 0)                                                           AS total_revenue,
-        COALESCE(SUM(f.net_revenue), 0)                                                     AS total_net_revenue,
+        COALESCE(SUM(f.price - f.discount), 0)                                              AS total_net_revenue,
         ROUND(COALESCE(AVG(f.price), 0)::numeric, 0)                                        AS avg_order_value,
         ROUND(COALESCE(SUM(f.discount), 0)::numeric, 0)                                     AS total_discount,
         ROUND(COALESCE(AVG(f.distance), 0)::numeric, 2)                                     AS avg_distance_km,
