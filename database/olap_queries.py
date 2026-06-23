@@ -497,7 +497,7 @@ def q_customer_age_gender_analysis(**filters) -> str:
     where_clause = _build_where_clause(**filters)
     return f"""
     SELECT
-        CASE WHEN GROUPING(c.customer_segment) = 1 THEN '(All Segments)' ELSE c.customer_segment END    AS customer_segment,
+        CASE WHEN GROUPING(c.age_group) = 1 THEN '(All Segments)' ELSE c.age_group END    AS customer_segment,
         CASE WHEN GROUPING(c.gender) = 1 THEN '(All Genders)' ELSE c.gender END       AS gender,
         COUNT(f.order_id)                                                       AS total_orders,
         SUM(f.price)                                                            AS total_revenue,
@@ -513,8 +513,8 @@ def q_customer_age_gender_analysis(**filters) -> str:
     JOIN dwh.dim_location l ON f.location_id = l.location_id
     JOIN dwh.dim_service s ON f.service_id = s.service_id
     {where_clause}
-    GROUP BY CUBE(c.customer_segment, c.gender)
-    ORDER BY GROUPING(c.customer_segment), c.customer_segment, GROUPING(c.gender), c.gender;
+    GROUP BY CUBE(c.age_group, c.gender)
+    ORDER BY GROUPING(c.age_group), c.age_group, GROUPING(c.gender), c.gender;
     """
 
 
